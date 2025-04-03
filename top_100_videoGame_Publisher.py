@@ -1,0 +1,3 @@
+from vgsales_data_Analysis import BarChart_Game_Publisher
+
+BarChart_Game_Publisher()

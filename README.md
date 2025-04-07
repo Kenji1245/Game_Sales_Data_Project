@@ -5,6 +5,13 @@ Further improvements were made for the top 100 global sales. x values for others
 
 # 03/04/2025
 This day was used to create a top 10 sales hbar graph and a top 100 video game publisher vertical bar graph. 
+![image](https://github.com/user-attachments/assets/bd5e66bc-4f3e-4b24-ac46-22576e667a10)
+vertical bar graph top publisher. 
+
+![image](https://github.com/user-attachments/assets/2c22df18-6ad3-4dd2-b2d7-90ade1e9a4a7)
+horizontal bar graph of top 10 global sales. 
+
+
 
 # 02/04/2025
 There was a decision between using Jupiter notebook or python visual code for the data analysis of game sales data. I decided to use visual code python since I have already have experience with jupiter notebook and visual code python being easier for team collaberation. During the project we have loaded the data onto visual code python for data examination, cleaning and visualisation. When viewing the data, it shows that most of the missing values of rows were in the year and publisher category. It was decided to remove the rows with missing values. No dupilcates were found as well. Our first task is to view the top 100 global sales of games and create a visualisation for better understanding.

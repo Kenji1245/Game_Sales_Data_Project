@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import mplcursors
+
 # 1: Purpose is to find various information on data we retrieved. This includes Read Data, Finding the top
 # 100 video games, Genre VS Platform, Genre and Region.
 
@@ -28,6 +30,8 @@ df.isnull().sum()
 
 df.duplicated().sum() # No duplicate values. 
 
+
+# What is the top 100 global sales and how does rank affect the number of sales. 
 # Top 100 Global Sales
 def scatterPlot():
     top_sales_df = df.sort_values(by="Global_Sales", ascending=False,) # Sort the data by global sales in descending order
@@ -35,17 +39,39 @@ def scatterPlot():
     print(top_100_sales) # Shows table of the top 100 games
 
     top_100_sales
-    x = top_100_sales['Rank']
-    y = top_100_sales['Global_Sales']
+    rank = top_100_sales['Rank']
+    g_sales = top_100_sales['Global_Sales']
+    na_sales = top_100_sales['NA_Sales']
+    eu_sales = top_100_sales['EU_Sales']
+    jp_sales = top_100_sales['JP_Sales']
+    other_sales = top_100_sales['Other_Sales']
 
-    plt.figure(figsize=(8,6))
+    # plt.figure(figsize=(8,6))
 
-    plt.scatter(x.values,y.values, alpha=0.6, c = 'blue', s = 10)
+    fig, ax = plt.subplots(figsize=(12, 8)) # Create the size of graph
+
+    g_graph = ax.scatter(rank, g_sales, label='global' ,c = 'green',alpha=0.6, s = 20) # plots the points for global values 
+    na_graph = ax.scatter(rank, na_sales, label='na' ,alpha=0.6, c = 'yellow', s = 20) # plots the points for north american values 
+    eu_graph= ax.scatter(rank, eu_sales, label='eu' ,alpha=0.6, c = 'blue', s = 20) # plots the points for european values 
+    jp_graph = ax.scatter(rank, jp_sales, label='jp' ,alpha=0.6, c = 'red', s = 20) # plots the points for japanese values 
+    other_graph = ax.scatter(rank, other_sales, label='other' ,alpha=0.6, c = 'purple', s = 20) # plots the points for other values 
+
+    graphs = [g_graph,na_graph,eu_graph,jp_graph,other_graph] # puts all the graphs on a list.
+
+    # Attach names to the points
+    cursor = mplcursors.cursor(graphs, hover=True) # Adds hover interactivity
+
+    @cursor.connect("add")
+    def on_add(sel):
+        i = sel.index
+        sel.annotation.set_text(df['Name'].iloc[i])
+
+    plt.legend()  # Show the legend (it will display color and label)
+
     plt.xlabel('Rank')
-    plt.ylabel('Global_Sales')
-    plt.title('Rank vs Global Sales')
+    plt.ylabel('Global, NA, EU, JP, and othersl_Sales')
+    plt.title('Rank vs Sales (Global, NA, EU, JP, and others)')
     plt.show()
-
 
 def hBarChart():
     top_sales_df = df.sort_values(by="Global_Sales", ascending=False,) # Sort the data by global sales in descending order

@@ -10,9 +10,8 @@ The same was also done for the top ten publisher graph.
 In addition, a graph of the top ten years where games were released most frequent has been created. 
 ![image](https://github.com/user-attachments/assets/ce5f039b-eab1-4b29-83c4-383aaaac4023)
 
-
-
-
+The same was done for the top ten years where games were released least frequent. However, this graph requires improvement. 
+![image](https://github.com/user-attachments/assets/059b4ac3-ec49-4541-ba56-f57ef06131d1)
 
 
 # 04/04/2025

@@ -4,6 +4,14 @@
 For the top 20 sold games horizontal bar chart, improvements have been made. This includes add colour to each bar, and creating a grid for better visualisation of graph. 
 ![image](https://github.com/user-attachments/assets/81c8b3dc-1923-4553-b5e1-ed8dea631b3a)
 
+The same was also done for the top ten publisher graph.
+![image](https://github.com/user-attachments/assets/415b267f-2197-4432-8498-2f36c106265d)
+
+In addition, a graph of the top ten years where games were released most frequent has been created. 
+![image](https://github.com/user-attachments/assets/ce5f039b-eab1-4b29-83c4-383aaaac4023)
+
+
+
 
 
 

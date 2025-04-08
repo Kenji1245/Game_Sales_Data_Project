@@ -1,5 +1,8 @@
 # Game_Sales_Data_Project
 
+#08/04/2025
+For the top 20 sold games horizontal bar chart, improvements have been made. This includes add colour to each bar, and creating a grid for better visualisation of graph. 
+
 # 04/04/2025
 Further improvements were made for the top 100 global sales. x values for others, Japan, North America, and Europe were added. There was also the addition of importing and adding a cursor so the user can hover over a point and reveals the name of the game on the graph. 
 ![image](https://github.com/user-attachments/assets/0a951c37-71db-49e2-8d02-b4eed26d946f)

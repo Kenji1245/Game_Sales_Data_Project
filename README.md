@@ -1,8 +1,10 @@
 # Game_Sales_Data_Project
 
 # 10/04/2025
-For the graph 'top ten least frequent years', I convert the x-values (years) into strings instead of its original values floats. The reason for doing this is because the graph spreads the values across and away from each other when using numerical values.
+For the graph 'top ten least frequent years', I convert the x-values (years) into strings instead of its original values floats. The reason for doing this is because the graph spreads the values across and away from each other when using numerical values. In addition, we have implemented different colours on the graphs to make them more visually appealing (lighter colours). 
 ![image](https://github.com/user-attachments/assets/a3053652-8eb1-49a2-928f-61b19b9b24f3)
+
+We also decided to create a top 5 most frequent games on the database graph, which will be implemented next. 
 
 
 # 08/04/2025

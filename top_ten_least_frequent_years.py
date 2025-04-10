@@ -1,0 +1,3 @@
+from vgsales_data_Analysis import ten_least_frequent_years
+
+ten_least_frequent_years()

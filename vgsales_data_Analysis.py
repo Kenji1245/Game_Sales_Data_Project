@@ -83,7 +83,7 @@ def hBarChart():
     top_20_sales = top_sales_df.head(20)
     x2 = top_20_sales['Global_Sales']
     y2 = top_20_sales['Name']
-    colour = ["blue", "red", "yellow", "purple", "orange", "green", "pink", "brown", "black", "skyblue"]
+    colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948']
 
     plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 
     plt.grid(True, axis='x', linestyle='--', linewidth=0.7, alpha=0.7) # Add vertical grid lines
@@ -106,7 +106,7 @@ def BarChart_Game_Publisher():
     
     x3 = ten_most_frequent_publisher['Publisher']
     y3 = ten_most_frequent_publisher['count']
-    colour = ["blue", "red", "yellow", "purple", "orange", "green", "pink", "brown", "black", "skyblue"]
+    colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2']
 
     plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 
     plt.grid(True, axis='x', linestyle='--', linewidth=0.7, alpha=0.7) # Add vertical grid lines
@@ -131,7 +131,9 @@ def ten_most_frequent_years():
 
     print(top_ten_years)
 
-    plt.bar(x4, y4, color='skyblue')
+    colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2']
+
+    plt.bar(x4, y4, color=colour)
     plt.xlabel("Year")
     plt.ylabel("count")
     plt.title("Top ten Years that have released the most games")
@@ -141,21 +143,52 @@ def ten_most_frequent_years():
 def ten_least_frequent_years():
     top_ten_years = df['Year'].value_counts().tail(10) # gets the top years that have released the least games frequently. 
     top_ten_years = top_ten_years.reset_index() # Moves the values onto a table.
-    top_ten_years = top_ten_years.sort_values( by = 'Year', ascending=True)
+    top_ten_years = top_ten_years.sort_values( by = 'Year', ascending=True) # rearrange the table within ascending order according to year.
 
     x5 = top_ten_years['Year']
     y5 = top_ten_years['count']
+    print("here")
+    print(type(x5))
+    print(x5)
 
+    new_x5 = []
+    for year in x5:
+        new_year = str(year)
+        new_x5.append(new_year)
+    
+
+    print("here")
     plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 
     plt.grid(True, axis='x', linestyle='--', linewidth=0.7, alpha=0.7) # Add vertical grid lines
 
     print(top_ten_years)
 
-    plt.bar(x5, y5, color='skyblue')
+    colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2']
+
+    plt.bar(new_x5, y5, color=colour)
     plt.xlabel("Year")
     plt.ylabel("count")
     plt.title("Top ten Years that have released the least games")
-    plt.xticks(x5,rotation=45) # x4 shows all the x values on graph and rotation = 45 rotates the year 45 degrees. 
+    plt.xticks(new_x5,rotation=45) # x5 shows all the x values on graph and rotation = 45 rotates the year 45 degrees. 
     plt.show()
 
-ten_least_frequent_years()
+def top_five_frequent_games():
+    top_five_platforms = df['Platform'].value_counts().head(5)
+    top_five_platforms = top_five_platforms.reset_index()
+    top_five_platforms = top_five_platforms.sort_values(by = "Platform", ascending=True)
+
+    print(top_five_platforms)
+
+    x6 = top_five_platforms['Platform']
+    y6 = top_five_platforms['count']
+
+    colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink']
+
+    plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 
+    plt.grid(True, axis='x', linestyle='--', linewidth=0.7, alpha=0.7) # Add vertical grid lines
+
+    plt.barh(y6, x6, color=colour)
+    plt.xlabel('Global_Sales ($ Millions)')
+    plt.ylabel('Name')
+    plt.title('Horizontal Bar Chart')
+

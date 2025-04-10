@@ -1,5 +1,10 @@
 # Game_Sales_Data_Project
 
+# 10/04/2025
+For the graph 'top ten least frequent years', I convert the x-values (years) into strings instead of its original values floats. The reason for doing this is because the graph spreads the values across and away from each other when using numerical values.
+![image](https://github.com/user-attachments/assets/a3053652-8eb1-49a2-928f-61b19b9b24f3)
+
+
 # 08/04/2025
 For the top 20 sold games horizontal bar chart, improvements have been made. This includes add colour to each bar, and creating a grid for better visualisation of graph. 
 ![image](https://github.com/user-attachments/assets/81c8b3dc-1923-4553-b5e1-ed8dea631b3a)

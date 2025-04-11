@@ -1,0 +1,3 @@
+from vgsales_data_Analysis import count_vs_globalSales_histo
+
+count_vs_globalSales_histo()

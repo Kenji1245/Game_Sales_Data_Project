@@ -1,3 +1,0 @@
-from vgsales_data_Analysis import top_five_frequent_games
-
-top_five_frequent_games()

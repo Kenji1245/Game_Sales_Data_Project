@@ -151,10 +151,10 @@ def ten_least_frequent_years():
     print(type(x5))
     print(x5)
 
-    new_x5 = []
-    for year in x5:
-        new_year = str(year)
-        new_x5.append(new_year)
+    new_x5 = [] # Place new string year values onto list.
+    for year in x5: 
+        new_year = str(year) # converts the num values into strings. 
+        new_x5.append(new_year) # puts values into list. 
     
 
     print("here")
@@ -172,7 +172,7 @@ def ten_least_frequent_years():
     plt.xticks(new_x5,rotation=45) # x5 shows all the x values on graph and rotation = 45 rotates the year 45 degrees. 
     plt.show()
 
-def top_five_frequent_games():
+def top_five_frequent_Platform_barChart():
     top_five_platforms = df['Platform'].value_counts().head(5)
     top_five_platforms = top_five_platforms.reset_index()
     top_five_platforms = top_five_platforms.sort_values(by = "Platform", ascending=True)
@@ -187,8 +187,60 @@ def top_five_frequent_games():
     plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 
     plt.grid(True, axis='x', linestyle='--', linewidth=0.7, alpha=0.7) # Add vertical grid lines
 
-    plt.barh(y6, x6, color=colour)
-    plt.xlabel('Global_Sales ($ Millions)')
-    plt.ylabel('Name')
-    plt.title('Horizontal Bar Chart')
+    plt.bar(x6, y6, color=colour)
+    plt.xlabel('Platform')
+    plt.ylabel('Count')
+    plt.title('Five Most Frequent Platform')
+    plt.xticks(x6)
+    plt.show()
 
+def top_five_frequent_Platform_pieChart():
+    top_five_platforms = df['Platform'].value_counts().head(5)
+    top_five_platforms = top_five_platforms.reset_index()
+    top_five_platforms = top_five_platforms.sort_values(by = "Platform", ascending=True)
+
+    print(top_five_platforms)
+
+    x6 = top_five_platforms['Platform']
+    y6 = top_five_platforms['count']
+
+    colour = ['gold', 'skyblue', 'lightcoral', 'lightgreen','silver']
+    explode = (0.1,0,0,0,0) # Explodes the first slice for emphasis
+
+
+    plt.figure(figsize=(8,8))
+    plt.pie(y6, labels=x6, colors=colour, explode=explode,autopct='%1.1f%%', shadow= True) # autopct controls the number format for percentage and shows it, and shadow adds shadow for depth.
+    plt.title('Five Most Frequent Platform')
+    plt.axis('equal')
+    plt.show()
+
+def count_vs_globalSales_histo():
+    count_vs_globalSales = df.sort_values(by="Global_Sales", ascending=False)
+
+    y_values = count_vs_globalSales['Global_Sales']
+    print(y_values)
+    
+    plt.figure(figsize=(8,6))
+    plt.hist(y_values, bins=60, color = 'skyblue', edgecolor='black')
+    plt.title('Global Sales')
+    plt.xlabel('Games by Rank')
+    plt.ylabel('Global Sales')
+    plt.grid(True)
+    plt.show()
+
+
+def count_vs_globalSales_histo():
+    count_vs_globalSales = df.sort_values(by="Global_Sales", ascending=False)
+
+    x_values = count_vs_globalSales['Global_Sales']
+    filter_x_values = x_values[x_values < 50]
+    
+    plt.figure(figsize=(8,6))
+    plt.hist(filter_x_values, bins=60, color = 'skyblue', edgecolor='black')
+    plt.title('Global Sales')
+    plt.xlabel('Games by Rank')
+    plt.ylabel('Global Sales')
+    plt.grid(True)
+    plt.show()
+
+count_vs_globalSales_histo()

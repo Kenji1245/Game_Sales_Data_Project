@@ -1,4 +1,6 @@
 # Game_Sales_Data_Project
+# Purpose
+The purpose of the data analysis project is to gain experience using tools for analysing data, gain insight on how data analyst analyse data, and understand new information gathered from data.
 
 # 11/04/2025
 Three graphs were created to further show data within the dataset. This includes 'Top five frequent Platforms' (bar chart), 'Top five frequent Platforms (pie chart), and global sales histogram. 

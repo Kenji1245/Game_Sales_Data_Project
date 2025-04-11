@@ -1,5 +1,21 @@
 # Game_Sales_Data_Project
 
+# 11/04/2025
+Three graphs were created to further show data within the dataset. This includes 'Top five frequent Platforms' (bar chart), 'Top five frequent Platforms (pie chart), and global sales histogram. 
+
+![image](https://github.com/user-attachments/assets/3a5c4dec-896f-4ee8-bbef-b47f13597843)
+Top five frequent Platforms (bar chart)
+
+![image](https://github.com/user-attachments/assets/c4be42da-42f6-450f-b541-904b410a20bd)
+Top five frequent Platforms (pie chart)
+
+
+global sales histogram
+![image](https://github.com/user-attachments/assets/1f8e484f-e1ad-45c5-812e-7befd0fd50ae)
+
+Furtherworks will includes a global sales histogram with threshold because the graph we have now does not properly reveal all the data clearly. Also we will include other, JP, EU NA histogram chart including threshold in futher work. 
+
+
 # 10/04/2025
 For the graph 'top ten least frequent years', I convert the x-values (years) into strings instead of its original values floats. The reason for doing this is because the graph spreads the values across and away from each other when using numerical values. In addition, we have implemented different colours on the graphs to make them more visually appealing (lighter colours). 
 ![image](https://github.com/user-attachments/assets/a3053652-8eb1-49a2-928f-61b19b9b24f3)

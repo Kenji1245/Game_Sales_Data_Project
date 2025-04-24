@@ -6,14 +6,15 @@ import seaborn as sns
 
 import mplcursors
 
-# 1: Purpose is to find various information on data we retrieved. This includes Read Data, Finding the top
-# 100 video games, Genre VS Platform, Genre and Region.
+import psycopg2
+
+# 1: Purpose is to find various information on data we retrieved. 
 
 # 2: Data was collected from kaggle.
 
 df = pd.read_csv(
-    r"C:\Users\kegge\OneDrive\Desktop\Coding_Projects\Game Sales Data Project\vgsales.csv"
-)
+        r"C:\Users\kegge\OneDrive\Desktop\Coding_Projects\Game Sales Data Project\vgsales.csv"
+    )
 
 # 3: Cleaning Data.
 
@@ -28,12 +29,65 @@ df.isnull().sum()
 
 df.duplicated().sum() # No duplicate values. 
 
-# 4: Viewing data
+# Save cleaned data to a new CSV (for use in COPY)
+df.to_csv("cleaned_file.csv", index=False)
+
+# 4. Connect to SQL Database and create a script to create a table.
+
+# This code connects python to the SQL database in pgAdmin 4. 
+# Replace with your own credentials
+hostname = "localhost"
+database = "analysis"
+username = 'postgres'
+pwd = 'Kennystar10!'
+port_id = 5432
+
+# Create a connection engine
+conn = psycopg2.connect(
+    host = hostname,
+    dbname = database,
+    user = username,
+    password = pwd,
+    port = port_id)
+
+cur = conn.cursor() # Allows python code to execute PostgreSQL command in a database session.
+
+create_script = ''' CREATE TABLE IF NOT EXISTS vg_sales (
+	id SERIAL PRIMARY KEY,
+	Rank INTEGER,
+	Name varchar(200),
+	Platform varchar(20),
+	Year numeric(20,2),
+	Genre varchar(20),
+	Publisher varchar(100),
+	NA_Sales numeric(20,2),
+	EU_Sales numeric(20,2),
+	JP_Sales numeric(20,2),
+	Other_Sales numeric(20,2),
+	Global_Sales numeric(20,2)
+); '''
+
+cur.execute(create_script)
+
+conn.commit()
+
+# 5. Open clean data and insert the data into SQL Database.  
+
+with open("cleaned_file.csv", "r") as f:
+    next(f)  # Skip header row
+    cur.copy_expert("COPY vg_sales (Rank, Name, Platform, Year, Genre, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales) FROM STDIN WITH CSV", f)
+
+conn.commit()
+
+cur.close() # Closes the cursor. 
+conn.close() # Closes the cursor. 
+
+
+# 6: Viewing data
 print("\n1. Checking the top rows of data\n")
 print(df.head())
 print("\n 2.Checking the dispersion of the data and central tendency.\n")
 print(df.describe())
-
 
 # What is the top 100 global sales and how does rank affect the number of sales. 
 # Top 100 Global Sales
@@ -242,5 +296,3 @@ def count_vs_globalSales_histo():
     plt.ylabel('Global Sales')
     plt.grid(True)
     plt.show()
-
-count_vs_globalSales_histo()

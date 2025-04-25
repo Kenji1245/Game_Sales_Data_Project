@@ -52,34 +52,70 @@ conn = psycopg2.connect(
 
 cur = conn.cursor() # Allows python code to execute PostgreSQL command in a database session.
 
-create_script = ''' CREATE TABLE IF NOT EXISTS vg_sales (
-	id SERIAL PRIMARY KEY,
-	Rank INTEGER,
-	Name varchar(200),
-	Platform varchar(20),
-	Year numeric(20,2),
-	Genre varchar(20),
-	Publisher varchar(100),
-	NA_Sales numeric(20,2),
-	EU_Sales numeric(20,2),
-	JP_Sales numeric(20,2),
-	Other_Sales numeric(20,2),
-	Global_Sales numeric(20,2)
-); '''
+# Create the main table
+cur.execute(''' 
+    CREATE TABLE IF NOT EXISTS vg_sales (
+        Rank INTEGER PRIMARY KEY,
+        Name varchar(200),
+        Platform varchar(20),
+        Year numeric(20,2),
+        Genre varchar(20),
+        Publisher varchar(100),
+        NA_Sales numeric(20,2),
+        EU_Sales numeric(20,2),
+        JP_Sales numeric(20,2),
+        Other_Sales numeric(20,2),
+        Global_Sales numeric(20,2)
+    );
+''')
 
-cur.execute(create_script)
+# Create a temporary table to hold the incoming data
+cur.execute(''' 
+    CREATE TABLE IF NOT EXISTS vg_sales_temp (
+        Rank INTEGER PRIMARY KEY,
+        Name varchar(200),
+        Platform varchar(20),
+        Year numeric(20,2),
+        Genre varchar(20),
+        Publisher varchar(100),
+        NA_Sales numeric(20,2),
+        EU_Sales numeric(20,2),
+        JP_Sales numeric(20,2),
+        Other_Sales numeric(20,2),
+        Global_Sales numeric(20,2)
+            
+    );
+''')
 
-conn.commit()
+
+conn.commit() # Commit the create table execution.
+print("vg_sales and vg_sales_temp Table created successfully.")
 
 # 5. Open clean data and insert the data into SQL Database.  
 
 with open("cleaned_file.csv", "r") as f:
     next(f)  # Skip header row
-    cur.copy_expert("COPY vg_sales (Rank, Name, Platform, Year, Genre, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales) FROM STDIN WITH CSV", f)
+    cur.copy_expert("COPY vg_sales_temp (Rank, Name, Platform, Year, Genre, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales) FROM STDIN WITH CSV ", f)
+
+# Insert data from the temporary table into the main table, avoiding duplicates
+cur.execute('''
+    INSERT INTO vg_sales (Rank, Name, Platform, Year, Genre, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales)
+            
+    SELECT Rank, Name, Platform, Year, Genre, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales FROM vg_sales_temp
+    
+    ON CONFLICT (Rank) DO NOTHING;
+''')
 
 conn.commit()
 
 cur.close() # Closes the cursor. 
+
+
+query = "SELECT * FROM vg_sales;"
+
+# Load data into a DataFrame
+df = pd.read_sql_query(query, conn)
+
 conn.close() # Closes the cursor. 
 
 
@@ -88,6 +124,10 @@ print("\n1. Checking the top rows of data\n")
 print(df.head())
 print("\n 2.Checking the dispersion of the data and central tendency.\n")
 print(df.describe())
+
+top_sales_df = df.sort_values(by="global_sales", ascending=False,) # Sort the data by global sales in descending order
+top_sales_df.head(10)
+print(top_sales_df.head(10))
 
 # What is the top 100 global sales and how does rank affect the number of sales. 
 # Top 100 Global Sales
@@ -133,10 +173,11 @@ def scatterPlot():
     plt.show()
 
 def hBarChart():
-    top_sales_df = df.sort_values(by="Global_Sales", ascending=False,) # Sort the data by global sales in descending order
+    top_sales_df = df.sort_values(by="global_sales", ascending=False,) # Sort the data by global sales in descending order
     top_20_sales = top_sales_df.head(20)
-    x2 = top_20_sales['Global_Sales']
-    y2 = top_20_sales['Name']
+    print(top_20_sales)
+    x2 = top_20_sales['global_sales']
+    y2 = top_20_sales['name']
     colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948']
 
     plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 

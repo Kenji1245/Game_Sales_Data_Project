@@ -10,31 +10,6 @@ import psycopg2
 
 # 1: Purpose is to find various information on data we retrieved. 
 
-# 2: Data was collected from kaggle.
-
-df = pd.read_csv(
-        r"C:\Users\kegge\OneDrive\Desktop\Coding_Projects\Game Sales Data Project\vgsales.csv"
-    )
-
-# 3: Cleaning Data.
-
-df.info() # Checking thhat each column is the correct type. 
-
-print(df.describe()) # Checking the dispersion of the data and central tendency.
-
-
-df.dropna(inplace=True) # All rows with missing values have been dropped.
-
-df.isnull().sum()
-
-df.duplicated().sum() # No duplicate values. 
-
-# Save cleaned data to a new CSV (for use in COPY)
-df.to_csv("cleaned_file.csv", index=False)
-
-# 4. Connect to SQL Database and create a script to create a table.
-
-# This code connects python to the SQL database in pgAdmin 4. 
 # Replace with your own credentials
 hostname = "localhost"
 database = "analysis"
@@ -50,38 +25,8 @@ conn = psycopg2.connect(
     password = pwd,
     port = port_id)
 
-cur = conn.cursor() # Allows python code to execute PostgreSQL command in a database session.
-
-create_script = ''' CREATE TABLE IF NOT EXISTS vg_sales (
-	id SERIAL PRIMARY KEY,
-	Rank INTEGER,
-	Name varchar(200),
-	Platform varchar(20),
-	Year numeric(20,2),
-	Genre varchar(20),
-	Publisher varchar(100),
-	NA_Sales numeric(20,2),
-	EU_Sales numeric(20,2),
-	JP_Sales numeric(20,2),
-	Other_Sales numeric(20,2),
-	Global_Sales numeric(20,2)
-); '''
-
-cur.execute(create_script)
-
-conn.commit()
-
-# 5. Open clean data and insert the data into SQL Database.  
-
-with open("cleaned_file.csv", "r") as f:
-    next(f)  # Skip header row
-    cur.copy_expert("COPY vg_sales (Rank, Name, Platform, Year, Genre, Publisher, NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales) FROM STDIN WITH CSV", f)
-
-conn.commit()
-
-cur.close() # Closes the cursor. 
-conn.close() # Closes the cursor. 
-
+# Use pandas to run SQL and return a DataFrame
+df = pd.read_sql("SELECT * FROM vg_sales;", conn)
 
 # 6: Viewing data
 print("\n1. Checking the top rows of data\n")
@@ -133,10 +78,10 @@ def scatterPlot():
     plt.show()
 
 def hBarChart():
-    top_sales_df = df.sort_values(by="Global_Sales", ascending=False,) # Sort the data by global sales in descending order
+    top_sales_df = df.sort_values(by="global_sales", ascending=False,) # Sort the data by global sales in descending order
     top_20_sales = top_sales_df.head(20)
-    x2 = top_20_sales['Global_Sales']
-    y2 = top_20_sales['Name']
+    x2 = top_20_sales['global_sales']
+    y2 = top_20_sales['name']
     colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948']
 
     plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 

@@ -1,14 +1,13 @@
-import numpy as np
 import pandas as pd
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-import mplcursors
 
 import psycopg2
 
-# 1: Purpose is to find various information on data we retrieved. 
+# Pandas will be used to read, check, drop and clean data from the csv file.
+# psycopg2 will be used to connect to the pgAdmin 4 sql database.
+
+# The purpose of the cleanData_and_createTable file is to clean the data by identifying any rows containing missing values and dropping them. 
+# Afterwards, a connection will be made to pgAdmin 4 sql database. Then SQL query execution will be done to create a table and insert values into that table. 
+# This table will be called vg-sales. 
 
 # 2: Data was collected from kaggle.
 

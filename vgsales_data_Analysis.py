@@ -37,17 +37,17 @@ print(df.describe())
 # What is the top 100 global sales and how does rank affect the number of sales. 
 # Top 100 Global Sales
 def scatterPlot():
-    top_sales_df = df.sort_values(by="Global_Sales", ascending=False,) # Sort the data by global sales in descending order
+    top_sales_df = df.sort_values(by="global_sales", ascending=False,) # Sort the data by global sales in descending order
     top_100_sales = top_sales_df.head(100) # Select the top 100 global sales
     print(top_100_sales) # Shows table of the top 100 games
 
     top_100_sales
-    rank = top_100_sales['Rank']
-    g_sales = top_100_sales['Global_Sales']
-    na_sales = top_100_sales['NA_Sales']
-    eu_sales = top_100_sales['EU_Sales']
-    jp_sales = top_100_sales['JP_Sales']
-    other_sales = top_100_sales['Other_Sales']
+    rank = top_100_sales['rank']
+    g_sales = top_100_sales['global_sales']
+    na_sales = top_100_sales['na_sales']
+    eu_sales = top_100_sales['eu_sales']
+    jp_sales = top_100_sales['jp_sales']
+    other_sales = top_100_sales['other_sales']
 
     # plt.figure(figsize=(8,6))
 
@@ -67,7 +67,7 @@ def scatterPlot():
     @cursor.connect("add")
     def on_add(sel):
         i = sel.index
-        sel.annotation.set_text(df['Name'].iloc[i])
+        sel.annotation.set_text(df['name'].iloc[i])
     
 
     plt.legend()  # Show the legend (it will display color and label)
@@ -95,15 +95,15 @@ def hBarChart():
     plt.show()
 
 def BarChart_Game_Publisher():
-    unique_count = df['Publisher'].nunique() # nunique() shows us the number of unique values there are on the column 'publisher'.
+    unique_count = df['publisher'].nunique() # nunique() shows us the number of unique values there are on the column 'publisher'.
     print(unique_count) 
 
     # Get the top 10 most frequent unique values
-    top_10 = df['Publisher'].value_counts().head(10) # value_counts counts the occurrences of each unique value and head(10) gets the top 10 values.
+    top_10 = df['publisher'].value_counts().head(10) # value_counts counts the occurrences of each unique value and head(10) gets the top 10 values.
     ten_most_frequent_publisher = top_10.reset_index() # reset_index() is used to move the index back into a regular column.
     print(ten_most_frequent_publisher) # top_10 shows us the top ten publisher and the number of games they have published. 
     
-    x3 = ten_most_frequent_publisher['Publisher']
+    x3 = ten_most_frequent_publisher['publisher']
     y3 = ten_most_frequent_publisher['count']
     colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2']
 
@@ -118,11 +118,11 @@ def BarChart_Game_Publisher():
     plt.show()
 
 def ten_most_frequent_years():
-    top_ten_years = df['Year'].value_counts().head(10) # gets the top years that have released the most games frequently. 
+    top_ten_years = df['year'].value_counts().head(10) # gets the top years that have released the most games frequently. 
     top_ten_years = top_ten_years.reset_index() # Moves the values onto a table.
-    top_ten_years = top_ten_years.sort_values( by = 'Year', ascending=True)
+    top_ten_years = top_ten_years.sort_values( by = 'year', ascending=True)
 
-    x4 = top_ten_years['Year']
+    x4 = top_ten_years['year']
     y4 = top_ten_years['count']
 
     plt.grid(True, axis='y', linestyle='--', linewidth=0.7, alpha=0.7) # Add horizontal grid lines 
@@ -140,15 +140,13 @@ def ten_most_frequent_years():
     plt.show()
 
 def ten_least_frequent_years():
-    top_ten_years = df['Year'].value_counts().tail(10) # gets the top years that have released the least games frequently. 
+    top_ten_years = df['year'].value_counts().tail(10) # gets the top years that have released the least games frequently. 
     top_ten_years = top_ten_years.reset_index() # Moves the values onto a table.
-    top_ten_years = top_ten_years.sort_values( by = 'Year', ascending=True) # rearrange the table within ascending order according to year.
+    top_ten_years = top_ten_years.sort_values( by = 'year', ascending=True) # rearrange the table within ascending order according to year.
 
-    x5 = top_ten_years['Year']
+    x5 = top_ten_years['year']
     y5 = top_ten_years['count']
-    print("here")
-    print(type(x5))
-    print(x5)
+    
 
     new_x5 = [] # Place new string year values onto list.
     for year in x5: 
@@ -172,13 +170,13 @@ def ten_least_frequent_years():
     plt.show()
 
 def top_five_frequent_Platform_barChart():
-    top_five_platforms = df['Platform'].value_counts().head(5)
+    top_five_platforms = df['platform'].value_counts().head(5)
     top_five_platforms = top_five_platforms.reset_index()
-    top_five_platforms = top_five_platforms.sort_values(by = "Platform", ascending=True)
+    top_five_platforms = top_five_platforms.sort_values(by = "platform", ascending=True)
 
     print(top_five_platforms)
 
-    x6 = top_five_platforms['Platform']
+    x6 = top_five_platforms['platform']
     y6 = top_five_platforms['count']
 
     colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink']
@@ -194,13 +192,13 @@ def top_five_frequent_Platform_barChart():
     plt.show()
 
 def top_five_frequent_Platform_pieChart():
-    top_five_platforms = df['Platform'].value_counts().head(5)
+    top_five_platforms = df['platform'].value_counts().head(5)
     top_five_platforms = top_five_platforms.reset_index()
-    top_five_platforms = top_five_platforms.sort_values(by = "Platform", ascending=True)
+    top_five_platforms = top_five_platforms.sort_values(by = "platform", ascending=True)
 
     print(top_five_platforms)
 
-    x6 = top_five_platforms['Platform']
+    x6 = top_five_platforms['platform']
     y6 = top_five_platforms['count']
 
     colour = ['gold', 'skyblue', 'lightcoral', 'lightgreen','silver']
@@ -214,9 +212,9 @@ def top_five_frequent_Platform_pieChart():
     plt.show()
 
 def count_vs_globalSales_histo():
-    count_vs_globalSales = df.sort_values(by="Global_Sales", ascending=False)
+    count_vs_globalSales = df.sort_values(by="global_sales", ascending=False)
 
-    y_values = count_vs_globalSales['Global_Sales']
+    y_values = count_vs_globalSales['global_sales']
     print(y_values)
     
     plt.figure(figsize=(8,6))
@@ -229,9 +227,9 @@ def count_vs_globalSales_histo():
 
 
 def count_vs_globalSales_histo():
-    count_vs_globalSales = df.sort_values(by="Global_Sales", ascending=False)
+    count_vs_globalSales = df.sort_values(by="global_sales", ascending=False)
 
-    x_values = count_vs_globalSales['Global_Sales']
+    x_values = count_vs_globalSales['global_sales']
     filter_x_values = x_values[x_values < 50]
     
     plt.figure(figsize=(8,6))

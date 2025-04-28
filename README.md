@@ -20,7 +20,7 @@ This project aims to extract meaningful insights from the video game sales data.
 - CSV
 
 # How the tools were used
-The video game sales file was extracted from Kaggle as a CSV. The data was then read using code in Python and cleaned by removing rows with missing values or duplicates. Afterwards, code within Python was used to establish a connection to SQL (pg Admin 4), create an SQL table called vg_sales, and insert data into table from the CSV file. The code from Python was then used to create visualisation plots that describe patterns and relationships within the dataset with the use of matplotlib.
+The video game sales file was extracted from Kaggle as a CSV. The data was then read using code in Python and cleaned by removing rows with missing values or duplicates. Afterwards, code within Python was used to establish a connection to SQL (pg Admin 4), create an SQL table called vg_sales, and insert data into table from the CSV file. The code from Python was then used to create visualisation plots from the data from SQL, to describe patterns and relationships within the dataset with the use of matplotlib.
 
 # Video Game Data
 ## Checking top rows of data

@@ -37,10 +37,14 @@ This project aims to extract meaningful insights from the video game sales data.
 ![image](https://github.com/user-attachments/assets/a6490ffe-930d-42d0-9962-5791b6309757)
 ![image](https://github.com/user-attachments/assets/40ea5598-4929-44aa-98b4-f9c89136008f)
 
-
-
 ## Top ten publishers by count
 ![image](https://github.com/user-attachments/assets/e70deb51-f3b6-4635-b107-793073f5e4d1)
+
+## Top ten years that have released the most games
+![image](https://github.com/user-attachments/assets/05940e6b-915a-4768-a920-925397d67e82)
+
+## Top ten years that have released the fewest games
+![image](https://github.com/user-attachments/assets/a69dfd29-c4d4-424e-b722-c4d92687e3ff)
 
 
 

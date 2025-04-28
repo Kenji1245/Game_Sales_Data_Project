@@ -30,6 +30,9 @@ The video game sales file was extracted from Kaggle as a CSV. The data was then 
 ## Checking the dispersion of the data and central tendency
 ![image](https://github.com/user-attachments/assets/50349201-4efe-4eb0-bf3d-b102f531388a)
 
+## SQL Data
+![image](https://github.com/user-attachments/assets/3ae7f441-7802-4cdc-8fdb-d72ec8282a70)
+
 # Analysis and Visualisation
 ## Genre of games that have been made the most 
 ![image](https://github.com/user-attachments/assets/89b29c7e-ea18-4bd0-85cd-05d83d4a1b48)

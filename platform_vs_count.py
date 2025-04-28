@@ -1,0 +1,3 @@
+from vgsales_data_Analysis import platform_vs_count
+
+platform_vs_count()

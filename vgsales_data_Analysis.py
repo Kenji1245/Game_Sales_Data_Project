@@ -226,16 +226,41 @@ def count_vs_globalSales_histo():
     plt.show()
 
 
-def count_vs_globalSales_histo():
-    count_vs_globalSales = df.sort_values(by="global_sales", ascending=False)
+def Genre_vs_count():
+    # Get value counts
+    genre_vs_count = df['genre'].value_counts()
+    print(genre_vs_count)
 
-    x_values = count_vs_globalSales['global_sales']
-    filter_x_values = x_values[x_values < 50]
-    
-    plt.figure(figsize=(8,6))
-    plt.hist(filter_x_values, bins=60, color = 'skyblue', edgecolor='black')
-    plt.title('Global Sales')
-    plt.xlabel('Games by Rank')
-    plt.ylabel('Global Sales')
-    plt.grid(True)
+    # colour
+    colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2', ]
+
+    # plot bar chart
+    genre_vs_count.plot(kind='bar', color = colour)
+
+    # Rotate x-axis labels
+    plt.xticks(rotation=45)
+
+    # Show the plot
+    plt.xlabel('Genre')
+    plt.ylabel('Count')
+    plt.title('Genre of games that have been made the most')
+    plt.show()
+
+def platform_vs_count():
+    # Get value count
+    platform_vs_count = df['platform'].value_counts()
+    print(platform_vs_count)
+
+    # colour 
+    colour = ["lightblue", "lightgreen", "lightcoral","lightskyblue", 'lightpink',"wheat",'#4E79A7', '#F28E2B', '#E15759', '#76B7B2', ]
+
+    # plot bar chart
+    platform_vs_count.plot(kind='bar', color = colour)
+
+    # Rotate x-axis labels
+    plt.xticks(rotation=45)
+
+    plt.xlabel('Platform')
+    plt.ylabel('Count')
+    plt.title('What platform do games get played the most')
     plt.show()

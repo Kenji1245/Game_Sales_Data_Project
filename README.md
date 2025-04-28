@@ -35,9 +35,7 @@ This project aims to extract meaningful insights from the video game sales data.
 
 ## Top five most frequent platforms
 ![image](https://github.com/user-attachments/assets/a6490ffe-930d-42d0-9962-5791b6309757)
-(bar chart)
 ![image](https://github.com/user-attachments/assets/40ea5598-4929-44aa-98b4-f9c89136008f)
-(pie chart)
 
 
 

@@ -27,4 +27,22 @@ This project aims to extract meaningful insights from the video game sales data.
 ![image](https://github.com/user-attachments/assets/50349201-4efe-4eb0-bf3d-b102f531388a)
 
 # Analysis and Visualisation
+## Genre of games that have been made the most 
+![image](https://github.com/user-attachments/assets/89b29c7e-ea18-4bd0-85cd-05d83d4a1b48)
+
+## Platforms that have been played the most 
+![image](https://github.com/user-attachments/assets/cd227793-5670-4f63-95ac-ef685ea72968)
+
+## Top five most frequent platforms
+![image](https://github.com/user-attachments/assets/a6490ffe-930d-42d0-9962-5791b6309757)
+(bar chart)
+![image](https://github.com/user-attachments/assets/40ea5598-4929-44aa-98b4-f9c89136008f)
+(pie chart)
+
+
+
+## Top ten publishers by count
+![image](https://github.com/user-attachments/assets/e70deb51-f3b6-4635-b107-793073f5e4d1)
+
+
 

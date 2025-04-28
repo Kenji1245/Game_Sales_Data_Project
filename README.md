@@ -26,5 +26,5 @@ This project aims to extract meaningful insights from the video game sales data.
 ## Checking the dispersion of the data and central tendency
 ![image](https://github.com/user-attachments/assets/50349201-4efe-4eb0-bf3d-b102f531388a)
 
-
+# Analysis and Visualisation
 

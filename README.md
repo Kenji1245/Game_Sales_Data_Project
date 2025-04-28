@@ -46,5 +46,10 @@ This project aims to extract meaningful insights from the video game sales data.
 ## Top ten years that have released the fewest games
 ![image](https://github.com/user-attachments/assets/a69dfd29-c4d4-424e-b722-c4d92687e3ff)
 
+## Top 100 games according to sales (Global, NA, JP, EU, and others)
+![image](https://github.com/user-attachments/assets/305ecd1b-04d1-492d-ac3d-1ca4c2faffab)
+
+## Top 20 games according to Global sales 
+![image](https://github.com/user-attachments/assets/d0858948-b03e-48dd-94c2-5b6c77227775)
 
 
